@@ -1,0 +1,58 @@
+
+plugins {
+    id 'java'
+}
+
+group = 'net.consensys.linea'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/Gabriel-Trintinalia/besu")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+        }
+    }
+    maven {
+        url "https://hyperledger.jfrog.io/artifactory/besu-maven/"
+        content { includeGroupByRegex('org\\.hyperledger\\.besu\\..*')}
+    }
+    maven {
+        url "https://artifacts.consensys.net/public/maven/maven/"
+        content { includeGroupByRegex('tech\\.pegasys\\..*')}
+    }
+    maven {
+        url "https://hyperledger.jfrog.io/artifactory/besu-maven/"
+        content { includeGroupByRegex('org\\.hyperledger\\.besu\\..*')}
+    }
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "https://artifacts.consensys.net/public/maven/maven/"
+        content { includeGroupByRegex('tech\\.pegasys($|\\..*)')}
+    }
+    maven {
+        url "https://dl.cloudsmith.io/public/libp2p/jvm-libp2p/maven/"
+        content { includeGroupByRegex('io\\.libp2p($|\\..*)') }
+    }
+    maven {
+        url "https://hyperledger.jfrog.io/artifactory/besu-maven/"
+        content { includeGroupByRegex('org\\.hyperledger\\.besu($|\\..*)') }
+    }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.hyperledger.besu.internal:core:24.10-develop-f9bd355'
+    implementation 'org.hyperledger.besu.internal:rlp:24.10.0'
+    implementation 'org.hyperledger.besu.internal:algorithms:24.10-develop-f9bd355'
+    implementation 'org.hyperledger.besu:besu-datatypes:24.10-develop-f9bd355'
+    implementation 'org.hyperledger.besu:plugin-api:24.10-develop-f9bd355'
+    implementation "org.hyperledger.besu:evm:24.10-develop-f9bd355"
+}
+
+test {
+    useJUnitPlatform()
+}
