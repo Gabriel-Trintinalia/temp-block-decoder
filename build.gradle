@@ -8,13 +8,6 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     maven {
-        url = uri("https://maven.pkg.github.com/Gabriel-Trintinalia/besu")
-        credentials {
-            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-        }
-    }
-    maven {
         url "https://hyperledger.jfrog.io/artifactory/besu-maven/"
         content { includeGroupByRegex('org\\.hyperledger\\.besu\\..*')}
     }
@@ -45,12 +38,12 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    implementation 'org.hyperledger.besu.internal:core:24.10-develop-f9bd355'
+    implementation 'org.hyperledger.besu.internal:core:24.10.0'
     implementation 'org.hyperledger.besu.internal:rlp:24.10.0'
-    implementation 'org.hyperledger.besu.internal:algorithms:24.10-develop-f9bd355'
-    implementation 'org.hyperledger.besu:besu-datatypes:24.10-develop-f9bd355'
-    implementation 'org.hyperledger.besu:plugin-api:24.10-develop-f9bd355'
-    implementation "org.hyperledger.besu:evm:24.10-develop-f9bd355"
+    implementation 'org.hyperledger.besu.internal:algorithms:24.10.0'
+    implementation 'org.hyperledger.besu:besu-datatypes:24.10.0'
+    implementation 'org.hyperledger.besu:plugin-api:24.10.0'
+    implementation "org.hyperledger.besu:evm:24.10.0"
 }
 
 test {

@@ -23,12 +23,10 @@ import org.hyperledger.besu.datatypes.Address;
 import org.hyperledger.besu.datatypes.TransactionType;
 import org.hyperledger.besu.datatypes.Wei;
 import org.hyperledger.besu.ethereum.core.Transaction;
-import org.hyperledger.besu.ethereum.core.encoding.registry.TransactionDecoder;
 import org.hyperledger.besu.ethereum.rlp.RLP;
 import org.hyperledger.besu.ethereum.rlp.RLPInput;
 
-public class NoSignatureTransactionDecoder implements TransactionDecoder {
-  @Override
+public class NoSignatureTransactionDecoder  {
   public Transaction decode(final RLPInput input) {
     {
       if (!input.nextIsList()) {
